@@ -6,8 +6,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### Reports ###
-reports/
+### Reports reports/ ###
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
