@@ -20,6 +20,7 @@ import java.util.Date;
 public class TestListener implements ITestListener {
     private static String dirName = new SimpleDateFormat("YYYY-MM_dd_HH-mm-ss").format(new Date());
     private static ExtentReports extent = ExtentManager.createInstance("./reports/"+dirName+"/extent-report.html");
+    //private static ExtentReports extent = ExtentManager.createInstance("./reports/extent-report.html");
 
     public static ExtentTest test;
     @Override
