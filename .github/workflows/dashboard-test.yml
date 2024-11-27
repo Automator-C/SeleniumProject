@@ -30,6 +30,7 @@ jobs:
       - run: firefox --version
 
       - uses: browser-actions/setup-edge@v1
+      - run: edge --version
 
       - name: Run test
         run: mvn clean test -Dsuite-xml="test-suites/DashboardTests.xml"
