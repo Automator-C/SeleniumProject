@@ -27,7 +27,7 @@
         </classes>
     </test>
     <test name="test4">
-    <parameter name="browser" value="safari"/>
+    <parameter name="browser" value="firefox"/>
         <classes>
             <class name="com.uiweb.test.dashboard.ValidateDashboardTable"/>
         </classes>
