@@ -12,6 +12,7 @@
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <suite-xml>dashboardTests.xml</suite-xml>
     </properties>
     <build>
         <finalName>SeleniumTest</finalName>
@@ -21,7 +22,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <compilerVersion>21</compilerVersion>
+                    <compilerVersion>23</compilerVersion>
                     <source>23</source>
                     <target>23</target>
                 </configuration>
@@ -30,12 +31,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>3.0.0-M5</version>
                 <configuration>
                     <suiteXmlFiles>
                         <file>TestNG.xml</file>
+                        <suiteXmlFile>${suite-xml}</suiteXmlFile>
                     </suiteXmlFiles>
-
                 </configuration>
             </plugin>
 
@@ -46,7 +47,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.25.0</version>
+            <version>4.27.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>

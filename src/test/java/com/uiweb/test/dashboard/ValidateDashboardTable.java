@@ -7,8 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -19,19 +19,20 @@ public class ValidateDashboardTable {
     private WebDriver driver;
     DashboardPage dashboardPage;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp(){
-        driver = DriverManager.openBrowser("chrome");
+        //driver = DriverManager.openBrowser("chrome");
+        DriverManager.openBrowser("chrome");
+        driver = DriverManager.getDriver();
         DriverManager.goToUrl("https://incidentmgmt.savitools.com");
         dashboardPage = new DashboardPage(driver);
     }
 
     @Test
     public void testTableHeaders(){
-          List<WebElement> headers = dashboardPage.getTableHeaders() ;
-
+        logger.info(" Thread count - testTableHeaders - "+Thread.currentThread().threadId());
+        List<WebElement> headers = dashboardPage.getTableHeaders() ;
         String[] expectedHeaders = {"Title", "Description","Assigned To", "Priority","Status","Created By","Created At","Updated At"};
-
         boolean headersMatch = true;
         for(int i=0; i<expectedHeaders.length;i++){
             String actualHeaders = headers.get(i).getText().trim();
@@ -51,12 +52,9 @@ public class ValidateDashboardTable {
 
 
 
-    @AfterTest
+    @AfterMethod
     public void tearDown(){
-        if(driver != null){
-            driver.quit();
-        }
-
+        DriverManager.quitDriver();
     }
 
 }

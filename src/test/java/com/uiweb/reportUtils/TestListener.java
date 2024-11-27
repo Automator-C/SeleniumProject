@@ -3,6 +3,7 @@ package com.uiweb.reportUtils;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
+import com.uiweb.driver.DriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -37,7 +38,8 @@ public class TestListener implements ITestListener {
         ExtentManager.getTest().pass("Test Passed for "+result.getMethod().getMethodName());
 
         // Capture and log the screenshot
-        WebDriver driver = (WebDriver) result.getTestContext().getAttribute("WebDriver");
+       //WebDriver driver = (WebDriver) result.getTestContext().getAttribute("WebDriver");
+        WebDriver driver = DriverManager.getDriver();
         String screenshotPath = takeScreenshot(result.getMethod().getMethodName(), driver);
         ExtentManager.getTest().pass("Screenshot of success", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
 
@@ -53,7 +55,8 @@ public class TestListener implements ITestListener {
         ExtentManager.getTest().fail(result.getThrowable());
 
         // Capture and log the screenshot
-        WebDriver driver = (WebDriver) result.getTestContext().getAttribute("WebDriver");
+        //WebDriver driver = (WebDriver) result.getTestContext().getAttribute("WebDriver");
+        WebDriver driver = DriverManager.getDriver();
         String screenshotPath = takeScreenshot(result.getMethod().getMethodName(), driver);
         ExtentManager.getTest().fail("Screenshot of failure", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
     }

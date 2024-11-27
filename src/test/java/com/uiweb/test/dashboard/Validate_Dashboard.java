@@ -16,7 +16,7 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
-public class Validate_Dashboard extends ReportManager {
+public class Validate_Dashboard {
 
     final static Logger logger = Logger.getLogger(Validate_Dashboard.class);
     private WebDriver driver;
@@ -27,8 +27,10 @@ public class Validate_Dashboard extends ReportManager {
 
     @BeforeMethod
     public void setUp(ITestContext context){
-        driver = DriverManager.openBrowser("chrome");
-        context.setAttribute("WebDriver", driver);
+        //driver = DriverManager.openBrowser("chrome");
+        //context.setAttribute("WebDriver", driver);
+        DriverManager.openBrowser("chrome");
+        driver = DriverManager.getDriver();
         DriverManager.goToUrl("https://incidentmgmt.savitools.com");
         dashboardPage = new DashboardPage(driver);
 
@@ -37,10 +39,11 @@ public class Validate_Dashboard extends ReportManager {
     @Test(description = "To validate the presence of Dashboard Icon")
     public void validateDashboardIcon(){
         //extentTest = extent.createTest("To validate the presence of Dashboard Icon");
+        logger.info(" Thread count - validateDashboardIcon - "+Thread.currentThread().threadId());
         String iconName = dashboardPage.getDashboardIconText();
         System.out.println("Icon name is "+iconName);
         logger.info("Icon name is "+iconName);
-        Assert.assertEquals(iconName, "Dashboardss");
+        Assert.assertEquals(iconName, "Dashboard");
 
         //extentTest.log(Status.PASS, MarkupHelper.createLabel("Validation pass", ExtentColor.GREEN));
     }
@@ -48,6 +51,7 @@ public class Validate_Dashboard extends ReportManager {
     @Test(description = "To validate the presence of Add Incident Button")
     public void validateAddIncidentBtn(){
        // extentTest = extent.createTest("To validate the presence of Add Incident Button");
+        logger.info(" Thread count - validateAddIncidentBtn - "+Thread.currentThread().threadId());
         String incidentBtn = dashboardPage.getIncidentBtnText();
         System.out.println("Incident Btn text is "+incidentBtn);
         logger.info("Incident Btn text is "+incidentBtn);
@@ -57,9 +61,6 @@ public class Validate_Dashboard extends ReportManager {
     }
     @AfterMethod
     public void tearDown(){
-        if(driver != null){
-            driver.quit();
-        }
-
+        DriverManager.quitDriver();
     }
 }

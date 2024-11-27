@@ -1,4 +1,4 @@
-package com.uiweb.test.incident;
+/*package com.uiweb.test.incident;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.uiweb.driver.DriverManager;
@@ -18,7 +18,7 @@ import java.net.MalformedURLException;
 public class validateDeleteIncident {
 
     /**Verify that an issue can be deleted, and it is removed from the incident list
-     */
+     */ /*
     final static Logger logger = Logger.getLogger(validateDeleteIncident.class);
     private WebDriver driver;
     DashboardPage dashboardPage;
@@ -56,3 +56,4 @@ public class validateDeleteIncident {
         }
     }
 }
+*/

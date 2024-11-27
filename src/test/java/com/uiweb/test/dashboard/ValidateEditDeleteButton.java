@@ -7,10 +7,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+
+import org.testng.annotations.*;
 
 public class ValidateEditDeleteButton {
 
@@ -18,9 +19,11 @@ public class ValidateEditDeleteButton {
     private WebDriver driver;
     DashboardPage dashboardPage;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp(){
-        driver = DriverManager.openBrowser("chrome");
+        //driver = DriverManager.openBrowser("chrome");
+        DriverManager.openBrowser("chrome");
+        driver = DriverManager.getDriver();
         DriverManager.goToUrl("https://incidentmgmt.savitools.com");
         dashboardPage = new DashboardPage(driver);
 
@@ -28,7 +31,7 @@ public class ValidateEditDeleteButton {
 
     @Test
     public void testEditDeleteButtonPresent(){
-
+        logger.info(" Thread count - testEditDeleteButtonPresent - "+Thread.currentThread().threadId());
         boolean editBtn = dashboardPage.isEditBtnDisplayed();
         System.out.println("Edit button status is "+editBtn);
         Assert.assertTrue(editBtn,"Edit button is present");
@@ -37,11 +40,8 @@ public class ValidateEditDeleteButton {
         Assert.assertTrue(deleteButton,"Delete button is present");
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown(){
-        if(driver != null){
-            driver.quit();
-        }
-
+        DriverManager.quitDriver();
     }
 }

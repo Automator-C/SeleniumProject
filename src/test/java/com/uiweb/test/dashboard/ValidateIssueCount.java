@@ -8,8 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -20,9 +20,11 @@ public class ValidateIssueCount {
     private WebDriver driver;
     DashboardPage dashboardPage;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp(){
-        driver = DriverManager.openBrowser("chrome");
+        //driver = DriverManager.openBrowser("chrome");
+        DriverManager.openBrowser("chrome");
+        driver = DriverManager.getDriver();
         DriverManager.goToUrl("https://incidentmgmt.savitools.com");
         dashboardPage = new DashboardPage(driver);
 
@@ -30,7 +32,7 @@ public class ValidateIssueCount {
 
     @Test
     public void testIssueCount(){
-
+        logger.info(" Thread count - testIssueCount - "+Thread.currentThread().threadId());
         int size = dashboardPage.getIssueRecordCount();
         System.out.println("Issue list size is "+size);
         Assert.assertEquals(size, 3);
@@ -39,12 +41,9 @@ public class ValidateIssueCount {
     }
 
 
-    @AfterTest
+    @AfterMethod
     public void tearDown(){
-        if(driver != null){
-            driver.quit();
-        }
-
+        DriverManager.quitDriver();
     }
 
 }

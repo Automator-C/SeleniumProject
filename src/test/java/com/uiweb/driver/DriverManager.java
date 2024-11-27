@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.annotations.AfterClass;
 
 import java.time.Duration;
 
@@ -15,11 +16,17 @@ import java.time.Duration;
 public class DriverManager {
 
     final static Logger logger = Logger.getLogger(DriverManager.class);
-    public static WebDriver driver;
+    //public static WebDriver driver;
 
-    public static WebDriver openBrowser(String browserName){
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-        if(browserName.equalsIgnoreCase("chrome")){
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    public static void openBrowser(String browserName) {
+        WebDriver webDriver=null;
+        if (browserName.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--no-sandbox"); // Bypass OS security model, MUST BE THE VERY FIRST OPTION
             options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
@@ -36,30 +43,45 @@ public class DriverManager {
             options.addArguments("--remote-allow-origins=*");
             options.addArguments("--headless=new");
             options.addArguments("--whitelisted-ips"); //bypass whitelisted IPs
-            driver = new ChromeDriver(options);
-
-
-        }else if(browserName.equalsIgnoreCase("firefox")){
-            driver = new FirefoxDriver();
-
-        }else if(browserName.equalsIgnoreCase("edge")){
-            driver = new EdgeDriver();
-
-        }else if(browserName.equalsIgnoreCase("ie")){
-            driver = new InternetExplorerDriver();
-
+            webDriver = new ChromeDriver(options);
         }
 
-        return driver;
+        else if (browserName.equalsIgnoreCase("firefox")) {
+            webDriver = new FirefoxDriver();
+
+        } else if (browserName.equalsIgnoreCase("edge")) {
+            webDriver = new EdgeDriver();
+
+        } else if (browserName.equalsIgnoreCase("ie")) {
+            webDriver = new InternetExplorerDriver();
+        }
+        driver.set(webDriver);
     }
 
-        public static void goToUrl(String appUrl){
-        logger.info("Getting the application url "+appUrl);
-        driver.get(appUrl);
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofMillis(10000));
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10000));
-
+    public static void goToUrl(String appUrl) {
+        logger.info("Getting the application url " + appUrl);
+        WebDriver driver = getDriver(); //get Thread-safe Webdriver instance
+        if (driver != null) {
+            driver.get(appUrl);
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofMillis(10000));
+            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10000));
+        } else {
+            throw new IllegalStateException("WebDriver has not been initialized.");
         }
+    }
+
+    public static void quitDriver() {
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
+    }
+
+    @AfterClass
+    public void tearDownClass() {
+        DriverManager.quitDriver();  // Closes browser after all tests in the class finish
+    }
+
 
 
 }

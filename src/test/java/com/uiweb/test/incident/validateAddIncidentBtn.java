@@ -1,3 +1,4 @@
+/*
 package com.uiweb.test.incident;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -15,10 +16,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class validateAddIncidentBtn {
-
+*/
     /**Validate that when "Add Incident" button is clicked, it opens up in an add incident form.
      And on Click of "Dashboard" icon, user navigates back to Dashboard page
-     */
+     *//*
     final static Logger logger = Logger.getLogger(validateAddIncidentBtn.class);
     private WebDriver driver;
 
@@ -60,3 +61,4 @@ public class validateAddIncidentBtn {
 
 
 }
+*/

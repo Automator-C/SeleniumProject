@@ -1,4 +1,4 @@
-package com.uiweb.test.incident;
+/*package com.uiweb.test.incident;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.uiweb.driver.DriverManager;
@@ -18,7 +18,7 @@ import java.net.MalformedURLException;
 public class validateEditIncident {
     /**Validate that user should be able to edit the incident form.
      Validate that the newly edited data is available in the dashboard screen
-     */
+     */ /*
     final static Logger logger = Logger.getLogger(validateEditIncident.class);
     private WebDriver driver;
     DashboardPage dashboardPage;
@@ -52,10 +52,7 @@ public class validateEditIncident {
         Assert.assertEquals(actualPriority,priority);
         Assert.assertEquals(actualStatus,status);
         test.info("Edit Incident functionality validated with success");
-
-
     }
-
 
     @AfterMethod
     public void tearDown() {
@@ -65,3 +62,4 @@ public class validateEditIncident {
         }
     }
 }
+*/

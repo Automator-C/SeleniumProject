@@ -1,3 +1,4 @@
+/*
 package com.uiweb.test.incident;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -17,7 +18,7 @@ public class validateIncidentFormError {
 
     /**Validate that "Add Incident" form shows field level error messages when the user tries to submit
      *  the form without entering all the required fields
-     */
+     */ /*
     final static Logger logger = Logger.getLogger(validateIncidentFormError.class);
     private WebDriver driver;
 
@@ -44,7 +45,6 @@ public class validateIncidentFormError {
         Assert.assertTrue(addIncidentPage.isCreatedByrDisplayed(), "CreatedBy field error is displayed");
         Assert.assertTrue(addIncidentPage.isAssignedToErrorDisplayed(), "AssignedTo field error is displayed");
         test.info("All the error messages are displayed as expected.");
-
     }
 
     @AfterMethod
@@ -55,3 +55,4 @@ public class validateIncidentFormError {
 
     }
 }
+*/

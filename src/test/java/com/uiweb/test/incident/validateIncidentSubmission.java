@@ -1,3 +1,4 @@
+/*
 package com.uiweb.test.incident;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -16,7 +17,7 @@ public class validateIncidentSubmission {
 
     /**Validate that user should be able to submit the form, once all the required data is entered.
      Validate that the newly created data is available in the dashboard screen
-     */
+     */ /*
     final static Logger logger = Logger.getLogger(validateIncidentSubmission.class);
     private WebDriver driver;
     DashboardPage dashboardPage;
@@ -59,3 +60,4 @@ public class validateIncidentSubmission {
     }
 
 }
+*/

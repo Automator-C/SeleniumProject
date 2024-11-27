@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="dashboard-tests" thread-count="3" parallel="classes">
+    <listeners>
+        <listener class-name="com.uiweb.reportUtils.TestListener" />
+    </listeners>
+    <test name="test1">
+        <classes>
+            <class name="com.uiweb.test.dashboard.Validate_Dashboard"/>
+            <class name="com.uiweb.test.dashboard.ValidateEditDeleteButton"/>
+            <class name="com.uiweb.test.dashboard.ValidateIssueCount"/>
+        </classes>
+    </test>
+<!--    <test name="test2">-->
+<!--        <classes>-->
+<!--            <class name="com.uiweb.test.dashboard.ValidateEditDeleteButton"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="test3">-->
+<!--        <classes>-->
+<!--            <class name="com.uiweb.test.dashboard.ValidateIssueCount"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>

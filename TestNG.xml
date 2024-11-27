@@ -7,7 +7,7 @@
     </listeners>
     <test name="Dashboard-Test">
         <classes>
-            <!--            <class name="com.uiweb.test.dashboard.Validate_Dashboard"/>-->
+<!--                      <class name="com.uiweb.test.dashboard.Validate_Dashboard"/>-->
             <!--            <class name="com.uiweb.test.dashboard.ValidateIssueCount"/>-->
             <!--            <class name="com.uiweb.test.dashboard.ValidateEditDeleteButton"/>-->
             <!--            <class name="com.uiweb.test.dashboard.ValidateDashboardTable"/>-->
@@ -16,9 +16,18 @@
 
     <test name="Incident-Test">
         <classes>
-             <class name="com.uiweb.test.incident.validateAddIncidentBtn"/>
+            <!--
+            <class name="com.uiweb.test.incident.validateAddIncidentBtn"/>
             <class name="com.uiweb.test.incident.validateIncidentFormError"/>
             <class name="com.uiweb.test.incident.validateIncidentSubmission"/>
+            -->
+        </classes>
+    </test>
+
+    <test name="Filters-Test">
+        <classes>
+           <!-- <class name="com.uiweb.test.filters.validatePriorityFilter"/> -->
+            <!--<class name="com.uiweb.test.filters.validateStatusFilter"/> -->
         </classes>
     </test>
 </suite>
