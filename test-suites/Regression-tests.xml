@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Regression-suite" thread-count="2" parallel="classes">
+    <listeners>
+        <listener class-name="com.uiweb.reportUtils.TestListener" />
+    </listeners>
+    <test name="Dashboard-Test">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.uiweb.test.dashboard.Validate_Dashboard"/>
+            <class name="com.uiweb.test.dashboard.ValidateIssueCount"/>
+            <class name="com.uiweb.test.dashboard.ValidateEditDeleteButton"/>
+            <class name="com.uiweb.test.dashboard.ValidateDashboardTable"/>
+        </classes>
+    </test>
+
+    <test name="Incident-Test">
+        <classes>
+            <class name="com.uiweb.test.incident.validateAddIncidentBtn"/>
+            <class name="com.uiweb.test.incident.validateIncidentFormError"/>
+            <class name="com.uiweb.test.incident.validateIncidentSubmission"/>
+            <class name="com.uiweb.test.incident.validateEditIncident"/>
+            <class name="com.uiweb.test.incident.validateDeleteIncident"/>
+        </classes>
+    </test>
+    <test name="Filters-Test">
+        <classes>
+            <class name="com.uiweb.test.filters.validateStatusFilter"/>
+            <class name="com.uiweb.test.filters.validatePriorityFilter"/>
+        </classes>
+    </test>
+</suite>

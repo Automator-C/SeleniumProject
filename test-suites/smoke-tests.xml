@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="smoke-suite" thread-count="2" parallel="tests">
+    <listeners>
+        <listener class-name="com.uiweb.reportUtils.TestListener" />
+    </listeners>
+    <test name="Dashboard-Test">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.uiweb.test.dashboard.Validate_Dashboard"/>
+        </classes>
+    </test>
+    <test name="Incident-Test">
+        <classes>
+            <class name="com.uiweb.test.incident.validateAddIncidentBtn"/>
+        </classes>
+    </test>
+ </suite>

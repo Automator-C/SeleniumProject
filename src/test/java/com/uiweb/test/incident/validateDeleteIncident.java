@@ -1,10 +1,11 @@
-/*package com.uiweb.test.incident;
+package com.uiweb.test.incident;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.uiweb.driver.DriverManager;
 import com.uiweb.pages.AddIncidentPage;
 import com.uiweb.pages.DashboardPage;
 import com.uiweb.reportUtils.TestListener;
+import com.uiweb.utils.ConfigManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -18,19 +19,21 @@ import java.net.MalformedURLException;
 public class validateDeleteIncident {
 
     /**Verify that an issue can be deleted, and it is removed from the incident list
-     */ /*
+     */
     final static Logger logger = Logger.getLogger(validateDeleteIncident.class);
     private WebDriver driver;
     DashboardPage dashboardPage;
-      ExtentTest test;
+    ExtentTest test;
     private static String issueTitle = "Database Connection Error";
+    private final String browserName = ConfigManager.getProperty("browser");
 
     @BeforeMethod
-    public void setUp(ITestContext context) throws MalformedURLException, InterruptedException {
+    public void setUp() throws MalformedURLException, InterruptedException {
+        logger.info("Setup step");
         //test = TestListener.getExtentTest();
-        driver = DriverManager.openBrowser("chrome");
-        context.setAttribute("WebDriver", driver);
-        DriverManager.goToUrl("https://incidentmgmt.savitools.com");
+        DriverManager.openBrowser(browserName);
+        driver = DriverManager.getDriver();
+        DriverManager.goToUrl(ConfigManager.getProperty("appUrl"));
         dashboardPage = new DashboardPage(driver);
 
 
@@ -38,22 +41,18 @@ public class validateDeleteIncident {
 
     @Test
     public void validateDeleteIncident() throws InterruptedException {
-        test = TestListener.getExtentTest();
+        //test = TestListener.getExtentTest();
         dashboardPage.getRowToDeleteAndClickOnIt(issueTitle);
         boolean isDeleted = dashboardPage.validateDeletedRecord(issueTitle);
         Thread.sleep(1000);
         Assert.assertTrue(isDeleted, "Record was deleted");
-        test.info("Delete Incident functionality validated with success");
+        //test.info("Delete Incident functionality validated with success");
 
     }
 
 
     @AfterMethod
     public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-
-        }
+        DriverManager.quitDriver();
     }
 }
-*/
