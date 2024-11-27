@@ -25,15 +25,13 @@ public class Validate_Dashboard {
 
     private ExtentTest extentTest;
 
+    @Parameters("browser")
     @BeforeMethod
-    public void setUp(ITestContext context){
-        //driver = DriverManager.openBrowser("chrome");
-        //context.setAttribute("WebDriver", driver);
-        DriverManager.openBrowser("chrome");
+    public void setUp(String browser){
+        DriverManager.openBrowser(browser);
         driver = DriverManager.getDriver();
         DriverManager.goToUrl("https://incidentmgmt.savitools.com");
         dashboardPage = new DashboardPage(driver);
-
     }
 
     @Test(description = "To validate the presence of Dashboard Icon")

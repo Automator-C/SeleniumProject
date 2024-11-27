@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterClass;
 
 import java.time.Duration;
@@ -43,17 +44,25 @@ public class DriverManager {
             options.addArguments("--remote-allow-origins=*");
             options.addArguments("--headless=new");
             options.addArguments("--whitelisted-ips"); //bypass whitelisted IPs
+            logger.info("Running chrome browser");
             webDriver = new ChromeDriver(options);
         }
 
         else if (browserName.equalsIgnoreCase("firefox")) {
+            logger.info("Running firefox browser");
             webDriver = new FirefoxDriver();
 
         } else if (browserName.equalsIgnoreCase("edge")) {
+            logger.info("Running edge browser");
             webDriver = new EdgeDriver();
 
         } else if (browserName.equalsIgnoreCase("ie")) {
+            logger.info("Running internet explorer browser");
             webDriver = new InternetExplorerDriver();
+
+        } else if (browserName.equalsIgnoreCase("safari")) {
+            logger.info("Running safari browser");
+            webDriver = new SafariDriver();
         }
         driver.set(webDriver);
     }

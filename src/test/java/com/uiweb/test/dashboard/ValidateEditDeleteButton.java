@@ -19,10 +19,10 @@ public class ValidateEditDeleteButton {
     private WebDriver driver;
     DashboardPage dashboardPage;
 
+    @Parameters("browser")
     @BeforeMethod
-    public void setUp(){
-        //driver = DriverManager.openBrowser("chrome");
-        DriverManager.openBrowser("chrome");
+    public void setUp(String browser){
+        DriverManager.openBrowser(browser);
         driver = DriverManager.getDriver();
         DriverManager.goToUrl("https://incidentmgmt.savitools.com");
         dashboardPage = new DashboardPage(driver);
