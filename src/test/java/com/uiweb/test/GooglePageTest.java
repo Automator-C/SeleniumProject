@@ -1,4 +1,3 @@
-/*
 package com.uiweb.test;
 
 import org.openqa.selenium.WebDriver;
@@ -32,5 +31,3 @@ public class GooglePageTest {
         driver.quit();
     }
 }
-
- */
